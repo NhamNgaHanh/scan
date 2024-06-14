@@ -24,7 +24,7 @@ def resize_image(image, target_size=(300, 300)):
     resized_image = image.resize(target_size)
     return resized_image
 
-def process_and_save_image(image):
+def process(image):
     saved_image_path = None
     HA1 = None
 
@@ -43,20 +43,19 @@ def process_and_save_image(image):
                 # Kiểm tra nếu ký tự là một ký tự chữ cái hoặc số
                 letters_only = ''.join(c for i, c in enumerate(line) if i < 4 or (c.isalpha() or c.isdigit() or c.isspace()))
                 st.write(letters_only)
-
+    return letters_only
+    def save_image(image):
+        input_image = Image.open(image)  # read image
         # Lưu và hiển thị ảnh đã xử lý
         resized_image = resize_image(input_image, target_size=(300, 300))
         saved_image_path = save_uploaded_file(resized_image)
         st.write("Tên của ảnh:", os.path.basename(saved_image_path))
         st.image(saved_image_path)  # Hiển thị ảnh đã lưu
-    else:
-        st.write("Upload an Image")
-
-    return letters_only
+        return letters_only
 
 
 # Sử dụng hàm process_and_save_image
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
-saved_image_path = process_and_save_image(image)
+saved_image_path = save_image(image)
 file_img = str("./")+str(saved_image_path)
 st.image(file_img)  # Hiển thị ảnh đã lưu
