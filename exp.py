@@ -8,7 +8,15 @@ import os
 @st.cache
 def load_model() -> Reader:
     return ocr.Reader(["en"], model_storage_directory=".")
+def save_uploaded_file(uploaded_file):
+    # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
+    if not os.path.exists("uploads"):
+        os.makedirs("uploads")
+    with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
+        f.write(uploaded_file.getbuffer())
 
+    # Trả về đường dẫn của ảnh đã được lưu
+    return os.path.join("uploads", uploaded_file.name)
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
 if image is not None:
     input_image = Image.open(image)  # read image
@@ -33,13 +41,3 @@ if image is not None:
     #st.image(saved_image_path)  # Hiển thị ảnh đã lưu
 else:
     st.write("Upload an Image")
-
-def save_uploaded_file(uploaded_file):
-    # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
-    if not os.path.exists("uploads"):
-        os.makedirs("uploads")
-    with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
-        f.write(uploaded_file.getbuffer())
-
-    # Trả về đường dẫn của ảnh đã được lưu
-    return os.path.join("uploads", uploaded_file.name)
