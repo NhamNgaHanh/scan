@@ -65,4 +65,4 @@ with col3:
                     letters_only = process(image)
                     saved_image_path = save_image(image)
                     file_img = str("./")+str(saved_image_path)
-                    st.write(file_img)  # Hiển thị ảnh đã lưu
+                    st.image(file_img)  # Hiển thị ảnh đã lưu
