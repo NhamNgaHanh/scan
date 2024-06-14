@@ -48,7 +48,7 @@ def save_image(image):
     saved_image_path = save_uploaded_file(resized_image)
     #st.write("Tên của ảnh:", os.path.basename(saved_image_path))
     #st.image(saved_image_path)  # Hiển thị ảnh đã lưu
-
+    return saved_image_path
 # Sử dụng hàm process và save_image
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
 letters_only = process(image)
