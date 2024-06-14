@@ -28,6 +28,14 @@ def main():
                 st.write(letters_only)
     else:
         st.write("Upload an Image")
-
+def save_uploaded_file(uploaded_file):
+    # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
+    if not os.path.exists("uploads"):
+        os.makedirs("uploads")
+    with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
+        f.write(uploaded_file.getbuffer())
+saved_image_path = save_uploaded_file(image)
+st.image(saved_image_path)  # Hiển thị ảnh đã lưu
+st.write("Tên của ảnh:", uploaded_file.name)
 if __name__ == "__main__":
     main()
