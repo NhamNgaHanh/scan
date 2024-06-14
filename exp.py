@@ -14,7 +14,7 @@ def main():
         result = reader.readtext(np.array(input_image))
         result_text = []  # empty list for results
         for text in result:
-            result_text.append(text[1])
+            result_text.append(text[2])
         st.session_state["HA11"] = result_text
     else:
         st.write("Upload an Image")
