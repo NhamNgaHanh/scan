@@ -4,6 +4,7 @@ from PIL import Image  # Image Processing
 import numpy as np  # Image Processing
 from easyocr import Reader
 import os
+import uuid  # Dùng để tạo một ID duy nhất cho mỗi ảnh
 
 @st.cache
 def load_model() -> Reader:
