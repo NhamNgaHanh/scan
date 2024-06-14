@@ -59,4 +59,4 @@ def process_and_save_image(image):
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
 saved_image_path = process_and_save_image(image)
 file_img = str("./")+str(saved_image_path)
-st.write(file_img)  # Hiển thị ảnh đã lưu
+st.image(file_img)  # Hiển thị ảnh đã lưu
