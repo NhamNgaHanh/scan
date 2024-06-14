@@ -15,10 +15,10 @@ def main():
         result_text = []  # empty list for results
         for text in result:
             result_text.append(text[1])
-        st.session_state("HA11", None) == result_text
+        st.session_state.get("HA11", None) = result_text
     else:
         st.write("Upload an Image")
-HA1 = st.session_state("HA11", None)
+HA1 = st.session_state.get("HA11", None)
 with st.container():
     st.write(HA1)
 @st.cache
