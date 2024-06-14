@@ -25,6 +25,9 @@ def resize_image(image, target_size=(300, 300)):
     return resized_image
 
 def process_and_save_image(image):
+    saved_image_path = None
+    HA1 = None
+
     if image is not None:
         input_image = Image.open(image)  # read image
         reader = load_model()  # load model
@@ -48,6 +51,9 @@ def process_and_save_image(image):
         st.image(saved_image_path)  # Hiển thị ảnh đã lưu
     else:
         st.write("Upload an Image")
+
+    return saved_image_path, HA1
+
 
 # Sử dụng hàm process_and_save_image
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
