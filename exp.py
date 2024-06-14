@@ -52,14 +52,14 @@ def save_image(image):
 # Sử dụng hàm process và save_image
 col3, col4 = st.columns([0.5, 0.5], gap="small")
 with col3:
-with st.container(border=True):
-    st.header("Nghiệm thu vật liệu cọc:")
-    col5, col6 = st.columns([0.2, 0.8])
-    with col5:
-        st.write("Đoạn cọc 1:")
-    with col6:
-        if st.button("Hình ảnh 1", key="Hình ảnh 1"):
-            image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
-            saved_image_path = save_image(image)
-            file_img = str("./")+str(saved_image_path)
-            st.write(file_img)  # Hiển thị ảnh đã lưu
+    with st.container(border=True):
+        st.header("Nghiệm thu vật liệu cọc:")
+        col5, col6 = st.columns([0.2, 0.8])
+        with col5:
+            st.write("Đoạn cọc 1:")
+        with col6:
+            if st.button("Hình ảnh 1", key="Hình ảnh 1"):
+                image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
+                saved_image_path = save_image(image)
+                file_img = str("./")+str(saved_image_path)
+                st.write(file_img)  # Hiển thị ảnh đã lưu
