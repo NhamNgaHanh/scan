@@ -38,7 +38,7 @@ def process(image):
                 # Loại bỏ ký tự từ kí tự thứ năm trở đi
                 # Kiểm tra nếu ký tự là một ký tự chữ cái hoặc số
                 letters_only = ''.join(c for i, c in enumerate(line) if i < 4 or (c.isalpha() or c.isdigit() or c.isspace()))
-                #st.write(letters_only)
+                st.write(letters_only)
         return letters_only
 
 def save_image(image):
@@ -46,9 +46,10 @@ def save_image(image):
     # Lưu và hiển thị ảnh đã xử lý
     resized_image = resize_image(input_image, target_size=(300, 300))
     saved_image_path = save_uploaded_file(resized_image)
-    #st.write("Tên của ảnh:", os.path.basename(saved_image_path))
-    #st.image(saved_image_path)  # Hiển thị ảnh đã lưu
+    st.write("Tên của ảnh:", os.path.basename(saved_image_path))
+    st.image(saved_image_path)  # Hiển thị ảnh đã lưu
     return saved_image_path
+
 # Sử dụng hàm process và save_image
 col3, col4 = st.columns([0.5, 0.5], gap="small")
 with col3:
@@ -60,6 +61,8 @@ with col3:
         with col6:
             if st.button("Hình ảnh 1", key="Hình ảnh 1"):
                 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
-                saved_image_path = save_image(image)
-                file_img = str("./")+str(saved_image_path)
-                st.write(file_img)  # Hiển thị ảnh đã lưu
+                if image:
+                    letters_only = process(image)
+                    saved_image_path = save_image(image)
+                    file_img = str("./")+str(saved_image_path)
+                    st.write(file_img)  # Hiển thị ảnh đã lưu
