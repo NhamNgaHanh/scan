@@ -18,7 +18,7 @@ def main():
         st.session_state["HA11"] = result_text
     else:
         st.write("Upload an Image")
-HA1 = list st.session_state.get("HA11", None)
+HA1 = list(st.session_state.get("HA11", None))
 with st.container(height=150, border=True):
     for line in HA1:
         # Loại bỏ ký tự từ kí tự thứ năm trở đi
