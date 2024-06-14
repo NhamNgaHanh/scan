@@ -1,5 +1,3 @@
-opencv-python
-easyocr
-torch
-numpy
+paddlepaddle
+paddleocr>=2.0.1
 streamlit
