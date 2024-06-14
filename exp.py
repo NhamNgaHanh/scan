@@ -59,10 +59,9 @@ with col3:
         with col5:
             st.write("Đoạn cọc 1:")
         with col6:
-            if st.button("Hình ảnh 1", key="Hình ảnh 1"):
-                image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
-                if image:
-                    letters_only = process(image)
-                    saved_image_path = save_image(image)
-                    file_img = str("./")+str(saved_image_path)
-                    st.image(file_img)  # Hiển thị ảnh đã lưu
+            image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
+            if image:
+                letters_only = process(image)
+                saved_image_path = save_image(image)
+                file_img = str("./")+str(saved_image_path)
+                st.image(file_img)  # Hiển thị ảnh đã lưu
