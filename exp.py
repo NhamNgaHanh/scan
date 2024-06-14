@@ -16,10 +16,11 @@ def main():
         for text in result:
             result_text.append(text[1])
         st.session_state("Hình ảnh 1", None) == result_text
+        HA1 = st.session_state("Hình ảnh 1", None)
     else:
         st.write("Upload an Image")
 with st.container():
-    st.write(st.session_state("Hình ảnh 1", None))
+    st.write(HA1)
 @st.cache
 def load_model() -> Reader:
     return ocr.Reader(["en"], model_storage_directory=".")
