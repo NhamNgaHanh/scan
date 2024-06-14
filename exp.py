@@ -8,18 +8,19 @@ import os
 @st.cache
 def load_model() -> Reader:
     return ocr.Reader(["en"], model_storage_directory=".")
-def save_uploaded_file(uploaded_file):
+
+def save_uploaded_file(image):
     # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
     if not os.path.exists("uploads"):
         os.makedirs("uploads")
-    with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    saved_image_path = os.path.join("uploads", "processed_image.jpg")
+    image.save(saved_image_path)
+    return saved_image_path
 
-    # Trả về đường dẫn của ảnh đã được lưu
-    return os.path.join("uploads", uploaded_file.name)
 def resize_image(image, target_size=(300, 300)):
     resized_image = image.resize(target_size)
     return resized_image
+
 def process_and_save_image(image):
     if image is not None:
         input_image = Image.open(image)  # read image
@@ -38,8 +39,8 @@ def process_and_save_image(image):
                 letters_only = ''.join(c for i, c in enumerate(line) if i < 4 or (c.isalpha() or c.isdigit() or c.isspace()))
                 st.write(letters_only)
 
-        # Lưu ảnh và hiển thị tên của ảnh đã lưu
-        resized_image = resize_image(image, target_size=(300, 300))
+        # Lưu và hiển thị ảnh đã xử lý
+        resized_image = resize_image(input_image, target_size=(300, 300))
         saved_image_path = save_uploaded_file(resized_image)
         st.write("Tên của ảnh:", os.path.basename(saved_image_path))
         st.image(saved_image_path)  # Hiển thị ảnh đã lưu
@@ -49,4 +50,3 @@ def process_and_save_image(image):
 # Sử dụng hàm process_and_save_image
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
 process_and_save_image(image)
-
