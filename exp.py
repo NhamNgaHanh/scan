@@ -52,7 +52,7 @@ def process_and_save_image(image):
     else:
         st.write("Upload an Image")
 
-    return saved_image_path, HA1
+    return saved_image_path
 
 
 # Sử dụng hàm process_and_save_image
