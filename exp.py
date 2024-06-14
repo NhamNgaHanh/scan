@@ -20,7 +20,11 @@ def main():
         st.write("Upload an Image")
 HA1 = st.session_state.get("HA11", None)
 with st.container(height=150, border=True):
-    st.write(HA1)
+for line in HA1:
+    # Loại bỏ ký tự từ kí tự thứ năm trở đi
+    # Kiểm tra nếu ký tự là một ký tự chữ cái hoặc số
+    letters_only = ''.join(c for i, c in enumerate(line) if i > 4 or (c.isalpha() or c.isdigit() or c.isspace()))
+    st.write(letters_only)
 @st.cache
 def load_model() -> Reader:
     return ocr.Reader(["en"], model_storage_directory=".")
