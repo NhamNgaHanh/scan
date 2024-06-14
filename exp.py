@@ -19,7 +19,7 @@ def main():
     else:
         st.write("Upload an Image")
 HA1 = st.session_state.get("HA11", None)
-with st.container():
+with st.container(height=150, border=True):
     st.write(HA1)
 @st.cache
 def load_model() -> Reader:
