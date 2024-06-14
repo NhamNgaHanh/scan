@@ -3,6 +3,7 @@ import streamlit as st  # Web App
 from PIL import Image  # Image Processing
 import numpy as np  # Image Processing
 from easyocr import Reader
+import os
 
 @st.cache
 def load_model() -> Reader:
@@ -26,16 +27,23 @@ def main():
                 # Kiểm tra nếu ký tự là một ký tự chữ cái hoặc số
                 letters_only = ''.join(c for i, c in enumerate(line) if i < 4 or (c.isalpha() or c.isdigit() or c.isspace()))
                 st.write(letters_only)
+
+        # Lưu ảnh và hiển thị tên của ảnh đã lưu
+        saved_image_path = save_uploaded_file(image)
+        st.write("Tên của ảnh:", os.path.basename(saved_image_path))
+        st.image(saved_image_path)  # Hiển thị ảnh đã lưu
     else:
         st.write("Upload an Image")
+
 def save_uploaded_file(uploaded_file):
     # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
     if not os.path.exists("uploads"):
         os.makedirs("uploads")
     with open(os.path.join("uploads", uploaded_file.name), "wb") as f:
         f.write(uploaded_file.getbuffer())
-saved_image_path = save_uploaded_file(image)
-st.image(saved_image_path)  # Hiển thị ảnh đã lưu
-st.write("Tên của ảnh:", uploaded_file.name)
+
+    # Trả về đường dẫn của ảnh đã được lưu
+    return os.path.join("uploads", uploaded_file.name)
+
 if __name__ == "__main__":
     main()
