@@ -12,17 +12,13 @@ def main():
         st.image(input_image)  # display image
         reader = load_model()  # load model
         result = reader.readtext(np.array(input_image))
-
         result_text = []  # empty list for results
-
         for text in result:
             result_text.append(text[1])
-
-        st.write(result_text)
     else:
         st.write("Upload an Image")
-
-
+with st.container():
+    st.write(result_text)
 @st.cache
 def load_model() -> Reader:
     return ocr.Reader(["en"], model_storage_directory=".")
