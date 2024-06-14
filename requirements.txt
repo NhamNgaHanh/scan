@@ -1,4 +1,4 @@
 streamlit
 opencv-python
-pytesseract==0.3.10
+easyocr
 pillow
