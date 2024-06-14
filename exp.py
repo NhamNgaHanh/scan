@@ -17,6 +17,9 @@ def save_uploaded_file(uploaded_file):
 
     # Trả về đường dẫn của ảnh đã được lưu
     return os.path.join("uploads", uploaded_file.name)
+def resize_image(image, target_size=(300, 300)):
+    resized_image = image.resize(target_size)
+    return resized_image
 def process_and_save_image(image):
     if image is not None:
         input_image = Image.open(image)  # read image
@@ -36,7 +39,7 @@ def process_and_save_image(image):
                 st.write(letters_only)
 
         # Lưu ảnh và hiển thị tên của ảnh đã lưu
-        resized_image = image.resize(target_size=(300, 300))
+        resized_image = resize_image(image, target_size=(300, 300))
         saved_image_path = save_uploaded_file(resized_image)
         st.write("Tên của ảnh:", os.path.basename(saved_image_path))
         st.image(saved_image_path)  # Hiển thị ảnh đã lưu
