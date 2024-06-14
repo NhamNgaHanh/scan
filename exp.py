@@ -36,10 +36,10 @@ def process_and_save_image(image):
                 st.write(letters_only)
 
         # Lưu ảnh và hiển thị tên của ảnh đã lưu
-        resized_image = resize_image(image, target_size=(300, 300))
+        resized_image = image.resize(target_size=(300, 300))
         saved_image_path = save_uploaded_file(resized_image)
         st.write("Tên của ảnh:", os.path.basename(saved_image_path))
-        #st.image(saved_image_path)  # Hiển thị ảnh đã lưu
+        st.image(saved_image_path)  # Hiển thị ảnh đã lưu
     else:
         st.write("Upload an Image")
 
