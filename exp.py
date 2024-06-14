@@ -11,9 +11,11 @@ def load_model() -> Reader:
 
 def save_uploaded_file(image):
     # Tạo một thư mục để lưu ảnh nếu chưa tồn tại
-    if not os.path.exists("uploads"):
-        os.makedirs("uploads")
-    saved_image_path = os.path.join("uploads", "processed_image.jpg")
+    if not os.path.exists("Photo"):
+        os.makedirs("Photo")
+    # Tạo tên file duy nhất bằng cách sử dụng UUID
+    unique_filename = str(uuid.uuid4()) + ".jpg"
+    saved_image_path = os.path.join("Photo", unique_filename)
     image.save(saved_image_path)
     return saved_image_path
 
@@ -24,7 +26,6 @@ def resize_image(image, target_size=(300, 300)):
 def process_and_save_image(image):
     if image is not None:
         input_image = Image.open(image)  # read image
-        st.image(input_image)  # display image
         reader = load_model()  # load model
         result = reader.readtext(np.array(input_image))
         result_text = []  # empty list for results
