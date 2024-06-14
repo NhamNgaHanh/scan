@@ -51,5 +51,5 @@ def process_and_save_image(image):
 
 # Sử dụng hàm process_and_save_image
 image = st.file_uploader(label="Upload your image here", type=["png", "jpg", "jpeg"])
-process_and_save_image(image)
+saved_image_path = process_and_save_image(image)
 st.image(saved_image_path)  # Hiển thị ảnh đã lưu
