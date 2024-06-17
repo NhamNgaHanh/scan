@@ -15,7 +15,7 @@ def save_uploaded_file(image):
         os.makedirs("Photo")
     # Tạo tên file duy nhất bằng cách sử dụng UUID
     unique_filename = str(uuid.uuid4()) + ".jpg"
-    saved_image_path = os.path.join("./Photo", unique_filename)
+    saved_image_path = os.path.join("Photo", unique_filename)
     image.save(saved_image_path)
     return saved_image_path
 
@@ -65,3 +65,5 @@ with col3:
                 saved_image_path = save_image(image)
                 file_img = str("./")+str(saved_image_path)
                 st.image(file_img)  # Hiển thị ảnh đã lưu
+                with open(os.path.join("Photo",  saved_image_path), "wb") as f:
+                    f.write(saved_image_path.getbuffer())
