@@ -4,6 +4,7 @@ from PIL import Image  # Image Processing
 import numpy as np  # Image Processing
 import os
 import uuid  # Dùng để tạo một ID duy nhất cho mỗi ảnh
+import shutil
 
 @st.cache
 def load_model() -> ocr.Reader:
