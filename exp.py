@@ -41,7 +41,6 @@ def process(image):
                 letters_only = ''.join(c for i, c in enumerate(line) if i < 4 or (c.isalpha() or c.isdigit() or c.isspace()))
                 st.write(letters_only)
         return letters_only
-
 def save_image(image):
     input_image = Image.open(image)  # read image
     # Lưu và hiển thị ảnh đã xử lý
