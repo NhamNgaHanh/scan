@@ -48,7 +48,7 @@ def save_image(image):
     resized_image = resize_image(input_image, target_size=(300, 300))
     saved_image_path = save_uploaded_file(resized_image)
     st.write("Tên của ảnh:", os.path.basename(saved_image_path))
-    st.image(saved_image_path)  # Hiển thị ảnh đã lưu
+    #st.image(saved_image_path)  # Hiển thị ảnh đã lưu
     return saved_image_path
 
 # Sử dụng hàm process và save_image
