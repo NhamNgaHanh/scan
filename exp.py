@@ -65,6 +65,4 @@ with col3:
                 letters_only = process(image)
                 saved_image_path = save_image(image)
                 file_img = str("./")+str(saved_image_path)
-                st.image(file_img)  # Hiển thị ảnh đã lưu
-                with open(os.path.join("Photo",  saved_image_path), "wb") as f:
-                    f.write(saved_image_path.getbuffer())
+st.image(file_img)  # Hiển thị ảnh đã lưu
